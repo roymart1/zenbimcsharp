@@ -1,0 +1,11 @@
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/bin/Debug/netcoreapp2.2/SeleniumTest.deps.json
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/bin/Debug/netcoreapp2.2/SeleniumTest.runtimeconfig.json
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/bin/Debug/netcoreapp2.2/SeleniumTest.runtimeconfig.dev.json
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/bin/Debug/netcoreapp2.2/SeleniumTest.dll
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/bin/Debug/netcoreapp2.2/SeleniumTest.pdb
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/obj/Debug/netcoreapp2.2/SeleniumTest.csprojAssemblyReference.cache
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/obj/Debug/netcoreapp2.2/SeleniumTest.csproj.CoreCompileInputs.cache
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/obj/Debug/netcoreapp2.2/SeleniumTest.AssemblyInfoInputs.cache
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/obj/Debug/netcoreapp2.2/SeleniumTest.AssemblyInfo.cs
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/obj/Debug/netcoreapp2.2/SeleniumTest.dll
+/Users/martin-pierreroy/RiderProjects/SeleniumTest/SeleniumTest/obj/Debug/netcoreapp2.2/SeleniumTest.pdb
