@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using SeleniumTest.Common;
+using SeleniumTest.PageObjects.Hub;
 
 namespace SeleniumTest.PageObjects
 {
@@ -21,7 +22,7 @@ namespace SeleniumTest.PageObjects
             weHubList = weHubHost.FindElements(By.XPath("./a"));
         }
 
-        public void OpenHubByName(string hubName)
+        public ProjectList OpenHubByName(string hubName)
         {
             foreach (var hub in weHubList)
             {
@@ -29,8 +30,10 @@ namespace SeleniumTest.PageObjects
                 if (title == hubName)
                 {
                     hub.Click();
+                    return new ProjectList();
                 }
             }
+            return null;
         }
         
     }

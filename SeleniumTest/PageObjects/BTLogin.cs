@@ -11,12 +11,10 @@ namespace SeleniumTest.PageObjects
         private string szlabelPassword_id = "Password";
         
         
-        
         private IWebElement weLabelUsername = null;
         private IWebElement weLabelPassword = null;
         private IWebElement weButtonLogIn = null;
 
-        
         
         public BTLogin()
         {

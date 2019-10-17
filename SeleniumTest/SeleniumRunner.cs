@@ -4,6 +4,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumTest.Common;
 using SeleniumTest.PageObjects;
+using SeleniumTest.PageObjects.Hub;
+using SeleniumTest.PageObjects.Project;
 
 namespace SeleniumTest
 {
@@ -47,7 +49,13 @@ namespace SeleniumTest
             login.LogIn("zenteliatest@gmail.com", "Z3nt3l1499!");
             
             BTHubsTracks btHubsTracks = new BTHubsTracks();
-            btHubsTracks.OpenHubByName("ZenyTestB");
+            ProjectList prjList = btHubsTracks.OpenHubByName("ZenyTestB");
+            
+            prjList.SelectProject("");
+            
+            MainProject mainProject = new MainProject();
+
+            mainProject.GetAllMenuOptions();
             
             Thread.Sleep(60000);
             CTX.driver.Close();
