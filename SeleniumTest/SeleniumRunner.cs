@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -6,6 +7,7 @@ using SeleniumTest.Common;
 using SeleniumTest.PageObjects;
 using SeleniumTest.PageObjects.Hub;
 using SeleniumTest.PageObjects.Project;
+using SeleniumTest.PageObjects.ScreenDecorator;
 
 namespace SeleniumTest
 {
@@ -32,6 +34,13 @@ namespace SeleniumTest
             Thread.Sleep(4500);
             CTX.driver.Close();
         }
+        
+        /*
+         * Environnement:
+            DEV: https://dev.bimtrack.co/en/Login
+            QA: https://qa.bimtrack.co/en/Login
+            PROD: https://bimtrackapp.co/en/Login (edited) 
+         */
 
         private void startBimTrack()
         {
@@ -55,7 +64,10 @@ namespace SeleniumTest
             
             MainProject mainProject = new MainProject();
 
-            mainProject.GetAllMenuOptions();
+            SideBarMenu sideBarMenu = mainProject.GetSidebarMenu();
+            sideBarMenu.ClickMenuItem("Hub Settings");
+            HubSettings hubSettings = new HubSettings();
+            hubSettings.clickButtonAddUser();
             
             Thread.Sleep(60000);
             CTX.driver.Close();

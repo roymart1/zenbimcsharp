@@ -8,14 +8,17 @@ namespace SeleniumTest.PageObjects.ScreenDecorator
     /// </summary>
     public class MenuOption
     {
-            public string name { get; }
-            public IWebElement weElement { get; }
 
-            public MenuOption(string option_name, IWebElement weOption)
-            {
-                name = option_name;
-                weElement = weOption;
-            }
+        public string name { get; }
+        public string section { get; }
+        public IWebElement weElement { get; }
+
+        public MenuOption(string option_name, string section_name, IWebElement weOption)
+        {
+            name = option_name;
+            section = section_name;
+            weElement = weOption;
+        }
             
             
 

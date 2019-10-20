@@ -21,6 +21,7 @@ namespace SeleniumTest.PageObjects.ScreenDecorator
         /// </returns>
         public List<MenuOption> GetAllMenuOptions()
         {
+            string section = "";
             listMenuOptions = new List<MenuOption>();
             
             IWebElement mainSideBar = CTX.driver.FindElement(By.XPath(".//div[@class='" + sideBarClass + "']"));
@@ -33,7 +34,11 @@ namespace SeleniumTest.PageObjects.ScreenDecorator
                 // Assumes that a span with an A parent is a header
                 if (weParent.GetAttribute("tagName").ToUpper() == "A")
                 {
-                    listMenuOptions.Add(new MenuOption(elem.Text, elem));
+                    listMenuOptions.Add(new MenuOption(elem.Text, section, elem));
+                }
+                else
+                {
+                    section = elem.Text;
                 }
             }
             return listMenuOptions;
