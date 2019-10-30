@@ -9,7 +9,7 @@ namespace SeleniumTest.PageObjects
 {
     public class BTHubsTracks
     {
-        private string szAddNewHub_id = "btnCreateHub";
+//        private string szAddNewHub_id = "btnCreateHub";
         private string szHubs_class = "block-content block-content-full";
 
         private IWebElement weHubHost = null;
@@ -27,7 +27,7 @@ namespace SeleniumTest.PageObjects
             foreach (var hub in weHubList)
             {
                 string title = hub.FindElement(By.XPath(".//p")).Text;
-                if (title == hubName)
+                if (title.ToLower() == hubName.ToLower())
                 {
                     hub.Click();
                     return new ProjectList();
