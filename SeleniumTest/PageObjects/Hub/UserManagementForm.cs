@@ -114,13 +114,42 @@ namespace SeleniumTest.PageObjects.Hub
         {
 //            IWebElement weTarget = GetRoot().FindElement(By.XPath("//input[@data-testid='validEmailCell']"));
 //            weTarget.SendKeys(BimEmailProcessor.EMAILS_PREFIX + szUserSuffix + 
-//                              BimEmailProcessor.EMAILS_DOMAIN);     
+//                              BimEmailProcessor.EMAILS_DOMAIN);    
+            var random = new Random();
+            Thread.Sleep(random.Next(250, 500));
             _SetNewUserEmail(bimUser.email);
+            Thread.Sleep(random.Next(250, 500));
             _SetNewUserRole(bimUser.isAdmin);
+            Thread.Sleep(random.Next(250, 500));
             _ClickAddOrCancel(true, false);
+
+
+            
+            //TODO: Replace by ID, dependant on localized resource
+            // Wait for a maximum time of x milliseconds for the out of users available message to pop in case the 
+            // maximum of users was reached
+            const string warning = "You can not choose this plan. The hub user limit is reached.";
+            var byElem = By.XPath(".//span[text() ='" + warning + "']");
+            var retElem = WebElementHelper.WaitUntilVisible(byElem, 2500);
+            
+            if (retElem != null)
+            {
+                return false;    
+            }
+            else
+            {
+                return true;
+            }
+                
+            
+        }
+
+        public bool RemoveAllUsers(BimTrackUser bimUser)
+        {
+            
             return false;
         }
-        
+
 
         /// <summary>
         /// This method sets the email as HubUser and validates the email is not generating an 'Invalid email address'
@@ -149,14 +178,29 @@ namespace SeleniumTest.PageObjects.Hub
         /// <param name="bAdd">true to create the new user from the information already field or false to
         /// dismiss the creation and delete the new user line entry</param>
         /// <param name="bLeftButtons">choose to click the accept/cancel from the left column of the table
-        /// or false to use the button from the last colum on the right side</param>
+        /// or false to use the button from the last column on the right side</param>
         private void _ClickAddOrCancel(bool bAdd, bool bLeftButtons = true)
         {
             IWebElement btnSection = null;
             btnSection = _GetNewUserCellRoot(bLeftButtons ? TABLE_COLUMN.AcceptBtnBegin:TABLE_COLUMN.AcceptBtnEnd);
-            ReadOnlyCollection<IWebElement> listBtn = btnSection.FindElements(By.XPath(".//button"));
+            _ClickAddOrCancel(bAdd, btnSection, bLeftButtons);  
+        }
+
+
+        /// <summary>
+        /// Click the button to process the creation of the new user or dismiss changes
+        /// 
+        /// </summary>
+        /// <param name="bAdd">true to create the new user from the information already field or false to
+        /// dismiss the creation and delete the new user line entry</param>
+        /// <param name="btnCell"></param>
+        /// <param name="bLeftButtons">choose to click the accept/cancel from the left column of the table
+        /// or false to use the button from the last colum on the right side</param>
+        private void _ClickAddOrCancel(bool bAdd, IWebElement btnCell, bool bLeftButtons = true)
+        {
+            ReadOnlyCollection<IWebElement> listBtn = btnCell.FindElements(By.XPath(".//button"));
             
-            WebElementHelper.HighlightElement(btnSection);
+            WebElementHelper.HighlightElement(btnCell);
             
             if (bAdd)
             {
@@ -167,14 +211,34 @@ namespace SeleniumTest.PageObjects.Hub
             else
             {
                 IWebElement btn = listBtn[1];
-                btn.Click();    
+                Assert.IsTrue(listBtn[1].Enabled, "UserRemoval: Delete user button disabled");
+                btn.Click();
+            }
+        }
+
+        public int RemoveAllUsers()
+        {
+            WebElementHelper.WaitUntilVisible(By.XPath(".//div[@data-testid='body']"), 3000);
+            var tableBody = weSectionRoot.FindElement(By.XPath(".//div[@data-testid='body']"));
+            var  tableRows= tableBody.FindElements(By.XPath(".//tr"));
+            foreach (var currentRow in tableRows)
+            {
+                var rowCells = currentRow.FindElements(By.XPath(".//td"));
+                _ClickAddOrCancel(false, rowCells[(int) TABLE_COLUMN.AcceptBtnBegin], true);
+                
+                var elem = WebElementHelper.WaitUntilVisible(By.XPath(".//button[@id='clickDelete']"), 10000);
+                while(!WebElementHelper.SafeClickElement(elem))
+                    Thread.Sleep(1500);
             }
             
-            
+            //TODO Implementation
+            return 0;
         }
+        
         
         public List<BimTrackUser> GetUserList()
         {
+
             // TODO: Implementation
             return null;
         }

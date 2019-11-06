@@ -25,13 +25,16 @@ namespace SeleniumTest.BusinessObjects
         /// </returns>
         public static string GetNewUserSuffix()
         {
-            return DateTime.Now.ToString("MMdd_hhmmss");  
+            string id = "";
+            id += DataGen.GenerateRandomChar();
+            id += DataGen.GenerateRandomChar();
+            return id + DateTime.Now.ToString("MMdd_hhmmss");  
         }
 
 
         public static string GetUniqueUserEmail(string emailsuffix)
         {
-            return BimEmailProcessor.EMAILS_PREFIX + emailsuffix + BimEmailProcessor.EMAILS_DOMAIN;
+            return BimEmailProcessor.EMAILS_PREFIX  + emailsuffix + BimEmailProcessor.EMAILS_DOMAIN;
         }
         
 

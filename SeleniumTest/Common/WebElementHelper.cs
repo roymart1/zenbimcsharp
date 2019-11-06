@@ -88,9 +88,31 @@ namespace SeleniumTest.Common
                 }
             }
         }
-        
-        
-        
-        
+
+
+        public static IWebElement WaitUntilVisible(By byStatement, int maxMillis = 3000)
+        {
+            var nIn = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            while (nIn + maxMillis > DateTimeOffset.Now.ToUnixTimeMilliseconds())
+            {    
+                var retElem = WebElementHelper.SafeFindElementDisplayed(byStatement);
+                if (retElem != null) return retElem;
+            }
+            return null;
+        }
+
+        public static IWebElement SafeFindElementDisplayed(By byElem)
+        {
+            var elements = CTX.driver.FindElements(byElem);
+            foreach (var elem in elements)
+            {
+                if (elem.Displayed)
+                {
+                    return elem;
+                }
+            }
+            return null;
+        }
+
     }
 }

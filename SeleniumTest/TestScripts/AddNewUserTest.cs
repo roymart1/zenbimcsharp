@@ -14,23 +14,6 @@ namespace SeleniumTest
 {
     class AddNewUserTest : SeleniumTestBase
     {
-
-
-            
-//            // process email
-//            BimEmailProcessor proc = new BimEmailProcessor();
-//            proc.GetLatestActivationForUser("ta002");
-
-//            // activate a new user 
-//            CompleteUserFormTest test2 = new CompleteUserFormTest();
-//            test2.ActivateUser();
-            
-
-        
-
-        
-        
-        
         
         /*
            Environnement:
@@ -77,7 +60,7 @@ namespace SeleniumTest
             CTX.driver.Close();  
             
             // Complete the user creation
-            (new CompleteUserFormTest()).ActivateUser(szLink);
+            new CompleteUserFormTest().ActivateUser(szLink);
             
             //hubSettings.FillNewUserInformation(userSuffix, true);
 

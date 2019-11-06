@@ -13,7 +13,7 @@ namespace SeleniumTest.PageObjects.Hub
         private string hubSettings_root_id = "hubSettings-component";
 
 
-        private IWebElement GetRoot()
+        public IWebElement GetRoot()
         {
             return CTX.driver.FindElement(By.Id(hubSettings_root_id));
         }
